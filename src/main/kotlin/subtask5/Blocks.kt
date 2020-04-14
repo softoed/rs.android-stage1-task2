@@ -30,7 +30,7 @@ class Blocks {
         } else {
             var resu = LocalDate.of(1,1,1)
             val locale = Locale("ru", "RU")
-            val formatter = DateTimeFormatter.ofPattern("d.MM.YYYY", locale)
+            val formatter = DateTimeFormatter.ofPattern("d.MM.yyyy", locale)
             for (item in blockA) {
                 if (item::class == blockB) {
 
@@ -39,7 +39,7 @@ class Blocks {
                     }
                 }
             }
-            return LocalDate.parse(resu.toString()).format(formatter).replace("2020","2019")
+            return LocalDate.parse(resu.toString()).format(formatter)
         }
 
         return "hello"
