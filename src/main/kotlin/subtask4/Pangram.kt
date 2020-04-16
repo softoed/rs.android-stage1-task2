@@ -17,33 +17,25 @@ class Pangram {
             }
         }
 
+        val noVow: (Char) -> Boolean = { it in "BCDFGHJKLMNPQRSTVWXZbcdfghjklmnpqrstvwxz"}
+
         var res = ""
         val mas = arrayOfNulls<String>(10)
-        if (b.length == 26) {
-            val seq = inputString.trim().splitToSequence(" ", ignoreCase = true)
+        val vow: (Char) -> Boolean = { it in "aeiouy" }
+        val seq = inputString.splitToSequence(" ", ignoreCase = true)
 
-            val vov: (Char) -> Boolean = { it in "aeiouy" }
-            for (item in seq) {
-                val kol = item.count(vov)
-                val newItem = "$kol$item "
-                if (mas[kol].isNullOrEmpty()) {
-                    mas[kol] = newItem
-                } else mas[kol] += newItem
-
+        for (item in seq) {
+            val kol = if (b.length == 26) {
+                item.count(vow)
+            } else {
+                item.count(noVow)
             }
-        }
-        else {
-            val seq = inputString.splitToSequence(" ", ignoreCase = true)
 
-            val vov: (Char) -> Boolean = { it in "BCDFGHJKLMNPQRSTVWXZbcdfghjklmnpqrstvwxz"}
-            for (item in seq) {
-                val kol = item.count(vov)
-                val newItem = "$kol$item "
-                if (mas[kol].isNullOrEmpty()) {
-                    mas[kol] = newItem
-                } else mas[kol] += newItem
+            val newItem = "$kol$item "
+            if (mas[kol].isNullOrEmpty()) {
+                mas[kol] = newItem
+            } else mas[kol] += newItem
 
-            }
         }
 
         for (item in mas) {
